@@ -11,7 +11,8 @@ function calcFactorial(num) {
   const n = parseInt(num);
   if (n < 0) return -1;
   if (n === 0) return 1;
-  return calcFactorial(n - 1) * n;
+  if (n > 0) return calcFactorial(n - 1) * n;
+  return null;
 }
 
 const UseEffect = (props) => {
