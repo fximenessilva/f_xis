@@ -1,13 +1,17 @@
+/* eslint-disable react/destructuring-assignment */
 /* eslint-disable import/no-duplicates */
 /* eslint-disable no-unused-vars */
 import React from 'react';
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import PageTitle from '../../components/layout/PageTitle';
 import SectionTitle from '../../components/layout/SectionTitle';
+import DataContext from '../../data/DataContext';
 
 const UseState = (props) => {
   const [count, setCount] = useState(0);
   const [name, setName] = useState('');
+
+  const { state, setState } = useContext(DataContext);
 
   return (
     <div className="UseState">
@@ -60,6 +64,11 @@ const UseState = (props) => {
         onChange={(e) => setName(e.target.value)}
       />
       <span className="text">{name}</span>
+      <span className="text">
+        CONTEXT (teste):
+        {' '}
+        {state.number}
+      </span>
     </div>
   );
 };

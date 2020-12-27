@@ -65,7 +65,7 @@ const UseMemo = (props) => {
         <button
           type="button"
           className="btn"
-          onClick={() => { setDark(!dark); console.log(themeStyles); }}
+          onClick={() => { setDark(!dark); }}
         >
           CHANGE
         </button>
