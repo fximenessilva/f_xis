@@ -2,32 +2,8 @@
 /* eslint-disable no-unused-vars */
 import React, { useReducer, useState } from 'react';
 import PageTitle from '../../components/layout/PageTitle';
-
-const initialState = {
-  cart: [],
-  products: [],
-  user: null,
-  number: 0,
-};
-
-function reducer(state, action) {
-  switch (action.type) {
-    case 'ADD_2_TO_NUMBER':
-      return { ...state, number: state.number + 2 };
-    case 'MULTIPLY_7_TO_NUMBER':
-      return { ...state, number: state.number * 7 };
-    case 'DIVIDE_25_TO_NUMBER':
-      return { ...state, number: state.number / 25 };
-    case 'GET_INTEGER':
-      return { ...state, number: parseInt(state.number) };
-    case 'MULTIPLY_X_TO_NUMBER':
-      return { ...state, number: state.number * action.payload };
-    case 'LOGIN':
-      return { ...state, user: { name: action.payload } };
-    default:
-      return state;
-  }
-}
+import { initialState, reducer } from '../../store';
+import { numberAdd2, login } from '../../store/actions';
 
 const UseReducer = (props) => {
   const [state, dispatch] = useReducer(reducer, initialState);
@@ -46,7 +22,7 @@ const UseReducer = (props) => {
           <button
             className="btn"
             type="button"
-            onClick={() => dispatch({ type: 'ADD_2_TO_NUMBER' })}
+            onClick={() => numberAdd2(dispatch)}
           >
             +2
           </button>
@@ -82,6 +58,8 @@ const UseReducer = (props) => {
               className="btn"
               onClick={() => dispatch({ type: 'MULTIPLY_X_TO_NUMBER', payload: inputNumber })}
             >
+              x
+              {' '}
               {inputNumber}
 
             </button>
@@ -97,7 +75,7 @@ const UseReducer = (props) => {
               <button
                 className="btn"
                 type="button"
-                onClick={() => dispatch({ type: 'LOGIN', payload: 'Maria' })}
+                onClick={() => login(dispatch, 'fran')}
               >
                 LOGIN
               </button>
